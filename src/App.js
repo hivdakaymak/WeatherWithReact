@@ -2,8 +2,9 @@
 
 import axios from "axios";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePosition } from "use-position";
+import HavaDurumu from "./compenents/HavaDurumu";
 
 const App = () => {
   const [weather, setWeather] = useState();
@@ -20,7 +21,17 @@ const App = () => {
     }
   };
 
-  return <div>Hava Durumu</div>;
+  useEffect(() => {
+    latitude && longitude && getWeatherAppData(latitude, longitude);
+  }, [latitude, longitude]);
+
+
+  return (
+    <div>
+      <h2> Hava Durumu</h2>
+      <HavaDurumu weather={weather} />
+    </div>
+  );
 };
 
 export default App;
