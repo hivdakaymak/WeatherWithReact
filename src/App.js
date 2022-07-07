@@ -11,9 +11,11 @@ const App = () => {
   const { latitude, longitude } = usePosition();
   const getWeatherAppData = async (lat, lon) => {
     const key = process.env.REACT_APP_WEATHER_API_KEY;
+    const lang = navigator.language.split("-")[0];
+    console.log(lang);
     try {
       const { data } = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&lang=${lang}&units=metric`
       );
       setWeather(data);
     } catch {
@@ -24,7 +26,6 @@ const App = () => {
   useEffect(() => {
     latitude && longitude && getWeatherAppData(latitude, longitude);
   }, [latitude, longitude]);
-
 
   return (
     <div>

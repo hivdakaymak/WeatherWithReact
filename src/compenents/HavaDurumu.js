@@ -14,12 +14,17 @@ const HavaDurumu = (props) => {
       </div>
     );
   }
+  // Sıcaklık değerini dönüştürmek için
+  // const tempp = weather.main.temp;
+  // const temppCal = ((tempp - 32) * 5) / 9;
+  // const message = tempp + "\xB0F is " + temppCal + "\xB0C.";
+  // console.log(message);
 
   return (
     <div>
       <h3>{weather.name}</h3>
       <h4>{weather.weather.map((data) => data.description).join(",")}</h4>
-      <p>{weather.main.temp}</p>
+      <p> {weather.main.temp}C</p>
       <p>{new Date(weather.dt * 1000).toLocaleDateString}</p>
     </div>
   );
